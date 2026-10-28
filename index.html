@@ -41,7 +41,7 @@ main{position:relative}.thread{position:absolute;left:14px;top:0;bottom:0;width:
 .hero{position:relative}.hero-art{z-index:1;background:none}.hero-photo{position:absolute;top:0;right:0;bottom:0;left:auto;width:56%;height:100%;object-fit:cover;object-position:center;opacity:1;z-index:0;-webkit-mask-image:linear-gradient(to right,transparent 0,#000 24%,#000 100%);mask-image:linear-gradient(to right,transparent 0,#000 24%,#000 100%);-webkit-mask-composite:source-over;mask-composite:add}@media(max-width:760px){.hero-photo{top:auto;left:0;width:100%;height:300px;-webkit-mask-image:linear-gradient(to top,#000 70%,transparent 100%);mask-image:linear-gradient(to top,#000 70%,transparent 100%)}}
 @media(max-width:760px){.contact{padding:36px 0}.contact-grid{gap:16px}.contact-copy>p:not(.eyebrow){margin:8px 0}.contact-zone{display:none}.contact-actions{gap:10px}.site-footer{padding:30px 0 18px}.footer-grid{gap:20px 16px;padding-bottom:20px}.footer-grid>.footer-col:nth-child(4),.footer-about p{display:none}.footer-col{gap:6px}.footer-bottom{padding-top:14px;gap:6px 12px}}
 /* Balanza decorativa en el hero (suave) + sin plantas SVG en el hero */
-.hero-art .hero-plant{display:none}.hero-balanza{position:absolute;left:4%;top:10%;width:130px;height:auto;opacity:.55;z-index:1;pointer-events:none}@media(max-width:760px){.hero-balanza{width:84px}.hero-note{font-size:22px;top:2%}}
+.hero-art .hero-plant{display:none}.hero::after{content:"";position:absolute;left:-70px;bottom:-60px;width:420px;height:420px;background:url(assets/balanza.png) no-repeat center/contain;opacity:.1;pointer-events:none;z-index:0}@media(max-width:760px){.hero::after{width:260px;height:260px;left:-50px;bottom:-40px}.hero-note{font-size:22px;top:2%}}
 /* WhatsApp verde */
 .button-primary[data-evento="whatsapp_click"]{background:#1ea952}.button-primary[data-evento="whatsapp_click"]:hover{background:#158a41}svg.wa-icon path:nth-of-type(2){fill:#1ea952}@media(max-width:760px){.button-primary.nav-cta[data-evento="whatsapp_click"],.button-primary.nav-cta[data-evento="whatsapp_click"]:hover{background:none}}
 /* Mimosa: tallo, hojitas y pompones en el scroll */
@@ -86,8 +86,7 @@ main{position:relative}.thread{position:absolute;left:14px;top:0;bottom:0;width:
           <p class="location"><svg class="ic-pin" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg> Atención presencial en Rosario y Casilda y online a todo el país</p>
         </div>
         <div class="hero-art has-photo reveal" aria-label="Ilustración editorial de adultos mayores" role="img">
-          <img class="hero-balanza" src="assets/balanza.png" alt="" aria-hidden="true" onerror="this.style.display='none'">
-          <div class="hero-note">Más derechos<br>para tu mañana<span></span></div>
+                    <div class="hero-note">Más derechos<br>para tu mañana<span></span></div>
           <span class="art-caption">Asesoramiento claro, en cada etapa.</span>
         </div>
       </div>
