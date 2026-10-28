@@ -12,7 +12,14 @@
   <meta property="og:description" content="Jubilaciones, pensiones y reajustes ante ANSES. Atención presencial en Rosario y Casilda y online a todo el país.">
   <meta name="twitter:card" content="summary_large_image">
   <title>Abogada previsional en Rosario | Estudio Messiez</title>
-  <script>window.dataLayer=window.dataLayer||[];</script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2CM7HD92S1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-2CM7HD92S1');
+  </script>
   <!-- Google Tag Manager (head): pegar acá el snippet con el ID GTM-XXXXXXX cuando esté creado -->
   <link rel="icon" type="image/png" href="assets/logo-estudio-messiez.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -178,8 +185,7 @@ main{position:relative}.thread{position:absolute;left:14px;top:0;bottom:0;width:
   document.addEventListener('click', e => {
     const a = e.target.closest('a[data-evento]');
     if (!a) return;
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({ event: a.dataset.evento, ubicacion: a.dataset.ubicacion || '' });
+    if (typeof gtag === 'function') gtag('event', a.dataset.evento, { ubicacion: a.dataset.ubicacion || '' });
   });
 
   const mainEl = document.getElementById('contenido');
