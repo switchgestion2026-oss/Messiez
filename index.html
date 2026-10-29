@@ -199,6 +199,7 @@ main{position:relative}.thread{position:absolute;left:14px;top:0;bottom:0;width:
 
   const mainEl = document.getElementById('contenido');
   const thread = document.querySelector('.thread');
+  const foot = document.querySelector('.site-footer');
   if (mainEl && thread) {
     const fill = thread.querySelector('.thread-fill');
     const NS = 'http://www.w3.org/2000/svg';
@@ -215,15 +216,19 @@ main{position:relative}.thread{position:absolute;left:14px;top:0;bottom:0;width:
     const update = () => {
       raf = 0;
       const mt = mainEl.getBoundingClientRect().top + window.scrollY;
-      const y = window.scrollY + window.innerHeight * 0.55 - mt;
-      const p = Math.max(0, Math.min(1, y / mainEl.offsetHeight));
+      const total = mainEl.offsetHeight + (foot ? foot.offsetHeight : 0);
+      const raw = window.scrollY + window.innerHeight * 0.55 - mt;
+      const p = Math.max(0, Math.min(1, raw / Math.max(1, total - window.innerHeight * 0.45)));
+      const y = p * total;
       fill.style.height = (p * 100) + '%';
       h1.style.strokeDashoffset = String(1 - p);
       dots.forEach((d, i) => d.classList.toggle('on', y >= secs[i].getBoundingClientRect().top + window.scrollY - mt));
       leaves.forEach(l => { const on = y >= l.y; l.el.classList.toggle('on', on); l.el.classList.toggle('fold', on && y - l.y < 70); });
     };
     const place = () => {
-      const H = mainEl.offsetHeight, A = window.innerWidth <= 760 ? 3 : 5, W = 2 * A + 2, cx = W / 2;
+      const fh = foot ? foot.offsetHeight : 0;
+      thread.style.bottom = (-fh) + 'px';
+      const H = mainEl.offsetHeight + fh, A = window.innerWidth <= 760 ? 3 : 5, W = 2 * A + 2, cx = W / 2;
       svg.setAttribute('width', W); svg.setAttribute('height', H); svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
       svg.style.left = -(A + 1) + 'px';
       const wave = ph => { let d = ''; for (let y = 0; y <= H; y += 6) d += (y ? 'L' : 'M') + (cx + A * Math.sin(y * 2 * Math.PI / 220 + ph)).toFixed(1) + ' ' + y; return d; };
